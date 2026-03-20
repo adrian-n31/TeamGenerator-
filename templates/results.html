@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ Today's Teams</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f0f7f2; font-family: 'Segoe UI', sans-serif; }
+        .header { background: linear-gradient(135deg, #1a3c1a, #2d6a2d); color: white; padding: 40px 0; text-align: center; margin-bottom: 30px; }
+        .team-card { border-radius: 15px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        .team-header { background: #27ae60; color: white; border-radius: 12px 12px 0 0; padding: 16px; text-align: center; }
+        .player-row { padding: 12px 16px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 10px; }
+        .player-row:last-child { border-bottom: none; }
+        .btn-green { background: #27ae60; color: white; border: none; }
+        .btn-green:hover { background: #1e8449; color: white; }
+        .rating-badge { background: #e8f5e9; color: #1e8449; padding: 4px 12px; border-radius: 20px; font-weight: 600; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🏆 Today's Teams</h1>
+    <p class="mb-0 opacity-75">5v5 Format — 4 players + 1 goalkeeper</p>
+</div>
+
+<div class="container pb-5">
+    <div class="row justify-content-center g-4">
+        <div class="col-md-5">
+            <div class="team-card">
+                <div class="team-header">
+                    <h4 class="mb-1">🟦 TEAM 1</h4>
+                    <span class="rating-badge">Rating: {{ rating1 }}/4</span>
+                </div>
+                <div class="p-2">
+                    {% for p in team1 %}
+                    <div class="player-row">
+                        <span style="font-size:1.3rem">{{ role_icon_map[p.role] }}</span>
+                        <div>
+                            <strong>{{ p.name }}</strong>
+                            <div style="font-size:0.8rem;color:#666">{{ p.position }} — {{ level_icon_map[p.level] }} {{ level_label_map[p.level] }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="team-card">
+                <div class="team-header">
+                    <h4 class="mb-1">🟥 TEAM 2</h4>
+                    <span class="rating-badge">Rating: {{ rating2 }}/4</span>
+                </div>
+                <div class="p-2">
+                    {% for p in team2 %}
+                    <div class="player-row">
+                        <span style="font-size:1.3rem">{{ role_icon_map[p.role] }}</span>
+                        <div>
+                            <strong>{{ p.name }}</strong>
+                            <div style="font-size:0.8rem;color:#666">{{ p.position }} — {{ level_icon_map[p.level] }} {{ level_label_map[p.level] }}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <div class="alert alert-{{ balance[0] }} text-center fs-5">
+                {{ balance[1] }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-2 g-3">
+        <div class="col-md-5">
+            <a href="/generate" class="btn btn-green btn-lg w-100">🔀 Regenerate teams</a>
+        </div>
+        <div class="col-md-5">
+            <a href="/" class="btn btn-outline-secondary btn-lg w-100">👥 New game</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
